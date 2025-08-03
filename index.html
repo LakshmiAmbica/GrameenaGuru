@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grameena Guru</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #006699;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #006699;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004f73;
+    }
+
+    h3, h4 {
+      margin-top: 30px;
+      color: #444;
+    }
+
+    p, li {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Grameena Guru</h1>
+
+    <form method="POST" action="/ask">
+      <label>Ask your question:</label>
+      <input type="text" name="question" placeholder="e.g., నేను 10వ తరగతి తర్వాత ఏం చేయాలి?" required>
+
+      <label>Select Language:</label>
+      <select name="language">
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+        <option value="hi">Hindi</option>
+      </select>
+
+      <button type="submit">Ask</button>
+    </form>
+
+    {% if response %}
+      <h3>Response:</h3>
+      <p>{{ response }}</p>
+    {% endif %}
+
+    {% if history %}
+      <h4>🕘 History</h4>
+      <ul>
+        {% for item in history %}
+          <li><strong>You:</strong> {{ item.user }}<br><strong>AI:</strong> {{ item.ai }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</body>
+</html>
